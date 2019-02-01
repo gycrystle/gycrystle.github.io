@@ -1,0 +1,27 @@
+body {
+  margin-top: 55px;
+  background-color: #606060
+}
+#about-me {
+  background-color: #EcEcEc;
+  color: #404040;
+  padding: 50px 15px 50px 20px;
+  font-family: Monospace Trebuchet;
+  
+}
+.menu-subtitle{
+  background-color: #404040;
+  color: lightGrey;
+  padding: 15px 10px 15px 10px;
+  margin: 5px 0px 5px 0px;
+  font-family: geneva, sans-serif;
+  
+}
+.portfolio-thumb{
+  padding: 5px 0px 5px 0px;
+  background-color: #ffffff
+}
+
+textarea.form-control{
+    height:100px;
+}
