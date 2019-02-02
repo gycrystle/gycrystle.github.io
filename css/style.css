@@ -1,17 +1,18 @@
 body {
   margin-top: 55px;
-  background-color: #606060
+  background-color: hsla(210, 50%, 50%, 0.15);
+    font-family: 'Ubuntu Mono', serif;
 }
 #about-me {
-  background-color: #EcEcEc;
-  color: #404040;
+  background-color: #F6F1D1;
+  color: #3C454A;
   padding: 50px 15px 50px 20px;
-  font-family: Monospace Trebuchet;
+  font-family: Monospace Trebuchet , Trebuchet MS, Molengo;
   
 }
 .menu-subtitle{
-  background-color: #404040;
-  color: lightGrey;
+  background-color: hsla(210, 50%, 30%, 0.55);
+  color: #3C454A;
   padding: 15px 10px 15px 10px;
   margin: 5px 0px 5px 0px;
   font-family: geneva, sans-serif;
@@ -24,4 +25,8 @@ body {
 
 textarea.form-control{
     height:100px;
+}
+
+canvas {
+	display: block;	
 }
