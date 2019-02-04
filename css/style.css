@@ -1,22 +1,27 @@
+/* 
+Color list
+#F6F1D1 -- champagne
+hsla(204, 14%, 7%, 0.9) -- dark dark greenish grey 
+*/
 body {
   margin-top: 55px;
   background-color: hsla(204, 14%, 7%, 0.9);
     font-family: 'Ubuntu Mono', serif;
 }
+
 #about-me {
   background-color: #F6F1D1;
   color: #3C454A;
-  padding: 50px 15px 50px 20px;
-  
-  
+  padding: 50px 15px 50px 20px;   
 }
+
 .menu-subtitle{
   background-color: hsla(204, 14%, 7%, 0.1)/*#9ABCABhsla(210, 50%, 30%, 0.55)*/;
   color: #F6F1D1/*#3C454A*/;
   padding: 15px 10px 15px 10px;
-  margin: 5px 0px 5px 0px;
-  
+  margin: 5px 0px 5px 0px;  
 }
+
 .work-thumb{
   padding: 15px 10px 15px 10px;
   margin: 5px 0px 5px 0px;
@@ -26,13 +31,16 @@ body {
 
 .cv-item{
   padding: 5px 5px 5px 10px;
-  margin: 5px 0px 5px 0px;
+  margin: 5px 100px 5px 0px;
+}
+
+.contact-box{
+  color: #F6F1D1
 }
 
 textarea.form-control{
     height:100px;
 }
-
 
 canvas {
 	display: block;	
