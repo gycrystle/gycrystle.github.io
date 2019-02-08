@@ -16,6 +16,11 @@ body {
   margin: 0px 0px 25px 0px;   
 }
 
+.navbar-header{
+  background-color: hsla(204, 14%, 7%, 0.1)/*#9ABCABhsla(210, 50%, 30%, 0.55)*/;
+
+}
+
 .menu-subtitle{
   background-color: hsla(204, 14%, 7%, 0.1)/*#9ABCABhsla(210, 50%, 30%, 0.55)*/;
   color: #F6F1D1/*#3C454A*/;
