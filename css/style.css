@@ -58,6 +58,8 @@ body {
 
 .contact-box{
   background-color: hsla(210, 50%, 50%, 0.3);
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px; 
   color: #F6F1D1
   
 }
