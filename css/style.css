@@ -10,7 +10,7 @@ body{
   background:radial-gradient(200% 100% at bottom center,#0F1214,#407FBF,#48639C,#84828F); 
   background:radial-gradient(220% 105% at top center,#0F1727 10%,#112030 40%,#0B132D 65%,#0F1214); 
   background-attachment:fixed; 
-  overflow:hidden;
+  /*overflow:hidden;*/
   font-family: 'Ubuntu Mono', serif;
 }
 /*
