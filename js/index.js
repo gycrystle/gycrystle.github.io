@@ -34,7 +34,7 @@ $.init = function () {
 
 $.reset = function () {
 	$.w = window.innerWidth;
-	$.h = window.innerHeight;
+	$.h = window.innerHeight*0.2;
 	$.cx = $.w / 2;
 	$.cy = $.h / 2;
 	$.c.width = $.w;
