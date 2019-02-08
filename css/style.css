@@ -57,6 +57,11 @@ body {
   
 }
 
+footer {
+  background-color: hsla(210, 50%, 50%, 0.4);
+  font-family: 'Ubuntu Mono', serif;
+}
+
 textarea.form-control{
     height:100px;
 }
