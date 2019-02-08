@@ -57,12 +57,14 @@ body {
 }
 
 .contact-box{
-  background-color: hsla(210, 50%, 50%, 0.3);
+  background-color: hsla(210, 50%, 50%, 0.35);
   color: #F6F1D1
   
 }
 
 footer {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px; 
   background-color: hsla(210, 50%, 50%, 0.4);
   font-family: 'Ubuntu Mono', serif;
 }
