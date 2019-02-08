@@ -3,17 +3,29 @@ Color list
 #F6F1D1 -- champagne
 hsla(204, 14%, 7%, 0.9) -- dark dark greenish grey 
 */
-body {
+@import "compass/css3";
+
+body{ 
   margin-top: 100px;
+  background:radial-gradient(200% 100% at bottom center,#0F1214,#407FBF,#48639C,#84828F); 
+  background:radial-gradient(220% 105% at top center,#0F1727 10%,#112030 40%,#0B132D 65%,#0F1214); 
+  background-attachment:fixed; 
+  overflow:hidden;
+  font-family: 'Ubuntu Mono', serif;
+}
+/*
+body {
+  
   background-color: hsla(204, 14%, 7%, 0.9);
     font-family: 'Ubuntu Mono', serif;
 }
+*/
 
 #about-me {
-  background-color: #F6F1D1;
-  color: #3C454A;
-  padding: 35px 15px 35px 20px;
-  margin: 0px 0px 25px 0px;   
+  background-color: hsla(204, 14%, 7%, 0.1);
+  color: #F6F1D1;
+  padding: 35px 15px 35px 15px;
+  margin: 25px 0px 25px 0px;   
 }
 
 .navbar-header{
@@ -72,6 +84,39 @@ footer {
 
 textarea.form-control{
     height:100px;
+}
+
+
+
+
+@keyframes rotate{
+  0%{
+    transform:perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(0);
+  } 
+  100%{
+    transform:perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
+  } 
+}
+.stars{
+  transform:perspective(500px);
+  transform-style:preserve-3d;
+  position:absolute;
+  bottom:0;
+  perspective-origin:50% 100%;
+  left:50%;
+  animation:rotate 500s infinite linear;
+}
+.star{
+  width:2px;
+  height:2px;
+  background:#F7F7B6;
+  //border-radius:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  transform-origin:0 0 -300px;
+  transform:translate3d(0,0,-300px);
+  backface-visibility:hidden;
 }
 
 canvas {
