@@ -33,6 +33,11 @@ body {
 
 }
 
+.navbar-brand{
+  font-family:'Pompiere';
+  font-size: 32px;
+} 
+
 .menu-subtitle{
   background-color: hsla(204, 14%, 7%, 0.1)/*#9ABCABhsla(210, 50%, 30%, 0.55)*/;
   color: #F6F1D1/*#3C454A*/;
@@ -56,7 +61,7 @@ body {
 .resp-container {
     position: relative;
     overflow: hidden;
-    padding-top: 56.25%;
+    padding-top: 62.5%;
 }
 
 .resp-iframe {
