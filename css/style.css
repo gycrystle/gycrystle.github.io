@@ -101,12 +101,8 @@ body {
 }
 
 footer {
-  position:absolute;
-    margin:0;
-    padding:0;
-    bottom:0;
-    left:0;
-    width:100%;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px; 
   background-image: linear-gradient(to bottom, hsla(210, 50%, 50%, 0.6), hsla(210, 50%, 50%, 0.1));
   font-family: 'Ubuntu Mono', serif;
     /* Include other footer properties */
