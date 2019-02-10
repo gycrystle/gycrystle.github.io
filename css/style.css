@@ -109,6 +109,7 @@ footer {
   margin: 0px 0px 0px 0px; 
   display: block;
   width: 100%;
+  position: relative;
   background-image: linear-gradient(to bottom, hsla(210, 50%, 50%, 0.6), hsla(210, 50%, 50%, 0.1));
   font-family: 'Ubuntu Mono', serif;
   
