@@ -103,6 +103,7 @@ body {
 footer {
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px; 
+  display: block;
   background-image: linear-gradient(to bottom, hsla(210, 50%, 50%, 0.6), hsla(210, 50%, 50%, 0.1));
   font-family: 'Ubuntu Mono', serif;
   
