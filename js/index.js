@@ -33,7 +33,7 @@ $.init = function () {
    ========================================*/
 
 $.reset = function () {
-	$.w = window.innerWidth*0.98;
+	$.w = window.innerWidth*0.985;
 	$.h = window.innerHeight*0.15;
 	$.cx = $.w / 2;
 	$.cy = $.h / 2;
