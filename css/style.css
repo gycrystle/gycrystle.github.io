@@ -8,7 +8,7 @@ hsla(204, 14%, 7%, 0.9) -- dark dark greenish grey
 body{ 
   margin-top: 100px;
   background:radial-gradient(200% 100% at bottom center,#0F1515,#234669,#48639C,#6D6B76,#0F1515); 
-  background:radial-gradient(220% 105% at top center,#211E26 10%,#232330 40%,#6D6B76 65%,#0F1214); 
+  background:radial-gradient(220% 105% at top center,#211E26 10%,#232330 30%,#6D6B76 55%,#0F1214); 
   background-attachment:fixed; 
   /*overflow:hidden;*/
   font-family: 'Ubuntu Mono', 'Roboto', serif;
