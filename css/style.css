@@ -155,5 +155,7 @@ textarea.form-control{
 }
 
 canvas {
-	display: block;	
+	display: block;
+  max-width: 100%;
+  	
 }
