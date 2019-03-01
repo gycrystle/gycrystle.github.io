@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var stars=600;
+  var stars=200;
   var $stars=$(".stars");
   var r=1000;
   for(var i=0;i<stars;i++){

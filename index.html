@@ -30,33 +30,13 @@
 
 
 <!--Header--> 
-<div class="navbar navbar-inverse navbar-fixed-top" style="max-width: 100%;">
-  <nav class="navbar-inner" style="max-width: 100%;">
-    <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class= "navbar-brand" href="#"><h1 style="padding: -10px 0px 10px 0px; margin: -10px 0px 0px 0px; ">Greace Crystle</h1></a>
-    </div>
-    <div class="collapse navbar-collapse navbar-right" id="myNavbar">
-      <ul class="nav navbar-nav active">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="resume.html">Background</a></li>
-        <li><a href="work.html">Research</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-    </div>
-  </nav>
-</div>
+<div w3-include-html="navbar.html"></div> 
 
 <!--Content--> 
 <div class="stars">
 
 </div>
+
 
 <div class="container">
 <!--About me--> 
@@ -82,13 +62,14 @@
       </div>
     </div>
   
-
+<!--
   <div class="stars">
 
     <div class="col-xs-12" style="padding:100px 0px 100px 0px; margin:100px 0px 100px 0px">
 
     </div>
   </div>
+-->
 <!--Portfolio-->
   <div class="menu-subtitle" id="work">
     <div class="row">
@@ -159,12 +140,13 @@
   </div>
 
 </div> <!-- end of content -->
+
 <canvas id="myCanvas" style="max-width: 100%;">Your browser does not support the HTML5 canvas tag.
-  <!-- <img id="underwater" src="https://s3.eu-west-3.amazonaws.com/gcrystle/futureunderwater_lica.png"> -->
+   <img id="underwater" src="https://s3.eu-west-3.amazonaws.com/gcrystle/futureunderwater_lica.png"> 
   </canvas>    
 
 
-<script  src="js/star.js"></script>
+
 
 <footer class="footer">
   
@@ -219,13 +201,19 @@
     <!--<h4 style="padding: 20px 5px 10px 5px; color:#F6F1D1"></h4>
   </div>
   -->
-<script  src="js/index.js"></script>
+
+
+ 
 </footer>
 
 </body>
 
+<script  src="js/index.js"></script>
 
+<script>
+includeHTML();
+</script> 
 
-
+<script  src="js/star.js"></script>
 
 </html>
