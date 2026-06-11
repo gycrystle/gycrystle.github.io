@@ -1,114 +1,465 @@
 <!DOCTYPE html>
-<html lang="en" >
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Greace Crystle - Work: Buoyant plume</title>
-  <!-- a bunch of libraries -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
-  <!-- All css is in one file, maybe need to separate one day-->
-  <link rel="stylesheet" href="css/style.css">
-  
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hydrothermal Plume Dynamics — Greace Crystle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0B1F36; --navy2:#132C4A; --teal:#00B4CC; --teal2:#009DB3;
+  --off-white:#F5F7F9; --white:#FFFFFF; --mid:#8A9DB2; --dark:#2C3E50;
+  --amber:#E8A54B; --rule:#DDE4ED; --green:#1a7a5a; --red:#c0392b;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;font-size:16px;color:var(--dark);background:var(--off-white);line-height:1.6;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(11,31,54,0.97);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:56px;}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;color:#fff;letter-spacing:0.3px;text-decoration:none;}
+.nav-logo span{color:var(--teal);}
+.nav-back{font-family:'Space Grotesk',sans-serif;font-size:0.8rem;font-weight:500;color:rgba(255,255,255,0.6);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+.nav-back:hover{color:var(--teal);}
 
+/* PROJECT HERO */
+.proj-hero{background:var(--navy);padding:100px 5vw 60px;position:relative;overflow:hidden;}
+.proj-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,180,204,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,180,204,0.04) 1px,transparent 1px);background-size:60px 60px;}
+.proj-hero-inner{position:relative;z-index:1;max-width:860px;}
+.proj-eyebrow{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.proj-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#fff;line-height:1.15;letter-spacing:-0.4px;margin-bottom:16px;}
+.proj-hero h1 em{color:var(--teal);font-style:normal;}
+.proj-meta{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:24px;}
+.meta-item{display:flex;flex-direction:column;gap:2px;}
+.meta-label{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:rgba(255,255,255,0.4);letter-spacing:2px;text-transform:uppercase;}
+.meta-value{font-size:0.85rem;color:rgba(255,255,255,0.8);font-weight:500;}
+.proj-summary{font-size:1rem;color:rgba(255,255,255,0.72);line-height:1.75;max-width:720px;}
+
+/* MAIN CONTENT */
+.proj-content{max-width:1080px;margin:0 auto;padding:60px 5vw;}
+.content-section{margin-bottom:60px;}
+.content-section h2{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:700;color:var(--navy);margin-bottom:20px;letter-spacing:-0.2px;display:flex;align-items:center;gap:10px;}
+.content-section h2::after{content:'';flex:1;height:1px;background:var(--rule);}
+.content-section p{font-size:0.95rem;color:#3a4a5c;line-height:1.75;margin-bottom:14px;}
+.content-section p:last-child{margin-bottom:0;}
+
+/* FIGURE */
+.fig-wrap{margin:32px 0;}
+.fig-wrap img{width:100%;height:auto;border-radius:6px;display:block;}
+.fig-placeholder{
+  background:var(--navy);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:10px;
+  min-height:300px;border:1px dashed rgba(0,180,204,0.25);
+}
+.fig-placeholder .fp-label{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:rgba(0,180,204,0.5);letter-spacing:1px;text-align:center;padding:0 20px;}
+.fig-caption{font-family:'Inter',sans-serif;font-size:0.8rem;color:var(--mid);margin-top:10px;line-height:1.5;font-style:italic;}
+
+/* 2-up and 3-up figure grids */
+.fig-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+.fig-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:32px 0;}
+.fig-grid-2 .fig-placeholder,.fig-grid-3 .fig-placeholder{min-height:200px;}
+@media(max-width:700px){.fig-grid-2,.fig-grid-3{grid-template-columns:1fr;}}
+
+/* RESULTS LIST */
+.results-list{display:flex;flex-direction:column;gap:14px;}
+.result-item{background:var(--white);border:1px solid var(--rule);border-left:3px solid var(--teal);border-radius:4px;padding:14px 18px;}
+.result-num{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--teal);letter-spacing:1px;margin-bottom:4px;}
+.result-title{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.result-desc{font-size:0.875rem;color:#4a5c6e;line-height:1.6;}
+
+/* CONFIG TABLE */
+.cfg-table{width:100%;border-collapse:collapse;font-size:0.82rem;margin:16px 0;}
+.cfg-table th{background:var(--navy);color:rgba(255,255,255,0.85);padding:8px 12px;text-align:left;font-family:'Space Grotesk',sans-serif;font-weight:600;}
+.cfg-table td{padding:7px 12px;border-bottom:1px solid var(--rule);color:#2c3e50;vertical-align:top;}
+.cfg-table tr:nth-child(even) td{background:var(--off-white);}
+.tag-g{background:rgba(26,122,90,0.12);color:var(--green);padding:1px 7px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:700;}
+.tag-a{background:rgba(184,106,16,0.12);color:#b86a10;padding:1px 7px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:700;}
+.tag-r{background:rgba(192,57,43,0.10);color:var(--red);padding:1px 7px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:0.68rem;font-weight:700;}
+
+/* REFS */
+.refs{display:flex;flex-direction:column;gap:8px;}
+.ref{font-size:0.82rem;color:#4a5c6e;line-height:1.5;}
+.ref a{color:var(--teal);text-decoration:none;}
+.ref a:hover{text-decoration:underline;}
+
+/* GITHUB LINK */
+.github-banner{background:var(--navy2);border-radius:6px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.github-banner-text{font-size:0.9rem;color:rgba(255,255,255,0.75);line-height:1.5;}
+.github-banner-text strong{color:#fff;}
+.btn-gh{font-family:'Space Grotesk',sans-serif;font-size:0.85rem;font-weight:600;color:var(--navy);background:var(--teal);padding:9px 20px;border-radius:4px;text-decoration:none;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;transition:background 0.2s;}
+.btn-gh:hover{background:var(--teal2);}
+
+footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:rgba(255,255,255,0.25);letter-spacing:0.5px;}
+</style>
+</head>
 <body>
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
-      rel="stylesheet">
-<link rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono|Pacifico|Pompiere">
-<link rel="stylesheet" 
-      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
-      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
-      crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/836/simplex-noise.min.js'></script>
+<nav>
+  <a class="nav-logo" href="index.html">Greace<span>.</span></a>
+  <a class="nav-back" href="index.html">← Back to portfolio</a>
+</nav>
 
-
-<!--Header--> 
-<div w3-include-html="navbar.html"></div> 
-
-<!--Content--> 
-<div class="container">
-<!--About me--> 
-  <div class="col-sm-12 text-center">
-    <div class="resp-container">
-      <iframe class="resp-iframe" src="//slides.com/gycrystle/caldeira-3-8/embed" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<!-- PROJECT HERO -->
+<div class="proj-hero">
+  <div class="proj-hero-inner">
+    <div class="proj-eyebrow">Doctoral Research · LOPS · CROCO · HPC</div>
+    <h1>Hydrothermal Plume Dynamics<br>at <em>Lucky Strike</em></h1>
+    <div class="proj-meta">
+      <div class="meta-item">
+        <span class="meta-label">Location</span>
+        <span class="meta-value">Mid-Atlantic Ridge, 37°N</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Period</span>
+        <span class="meta-value">2018 – 2023</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Institution</span>
+        <span class="meta-value">LOPS, Université de Bretagne Occidentale</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Supervisors</span>
+        <span class="meta-value">G. Roullet, J. Molemaker</span>
+      </div>
     </div>
-    <p style="font-size: 32px;"></p>
+    <p class="proj-summary">
+      High-resolution numerical study of a hydrothermal plume in a rotating, stratified
+      ocean — combining idealised CROCO simulations in three dynamical configurations with
+      a nested realistic ROMS simulation of the Lucky Strike vent field on the Mid-Atlantic Ridge.
+    </p>
   </div>
-  <h1></h1>
+</div>
 
-  <div class="row"></div>
-  
-</div> <!-- end of content -->
-<canvas id="myCanvas">Your browser does not support the HTML5 canvas tag.
-  <!-- <img id="underwater" src="https://s3.eu-west-3.amazonaws.com/gcrystle/futureunderwater_lica.png"> -->
-  </canvas>    
-</body>
+<!-- MAIN CONTENT -->
+<div class="proj-content">
+
+  <!-- Hero figure -->
+  <div class="fig-wrap">
+    <!--
+      FIGURE: assets/img/plume/mushroom_3d.png
+      The 3D isosurface of the plume (mushroom shape) from your CSI slide 7.
+      Full-width hero figure. Recommended size: 1080x540px or wider.
+    -->
+    <img src="assets/img/plume/mushroom_3d.png"
+         alt="3D isosurface of hydrothermal plume at Lucky Strike"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+    <div class="fig-placeholder" style="display:none; min-height:360px;">
+      <svg width="56" height="56" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="32" r="16" stroke="rgba(0,180,204,0.4)" stroke-width="1.5"/>
+        <line x1="24" y1="32" x2="24" y2="6" stroke="rgba(0,180,204,0.6)" stroke-width="1.5"/>
+        <circle cx="24" cy="4" r="3" fill="rgba(224,92,42,0.8)"/>
+      </svg>
+      <div class="fp-label">assets/img/plume/mushroom_3d.png<br>3D plume isosurface figure</div>
+    </div>
+    <div class="fig-caption">3D isosurface of the hydrothermal plume at Lucky Strike, showing the characteristic mushroom structure — a rising buoyant stem spreading into a horizontal intrusion at neutral buoyancy depth (~1350 m).</div>
+  </div>
+
+  <!-- Scientific context -->
+  <div class="content-section">
+    <h2>Scientific context</h2>
+    <p>
+      Mid-ocean ridges host approximately 700 active hydrothermal vent sites, collectively
+      releasing around 11 TW of geothermal heat into the deep ocean. Lucky Strike, located
+      on the Mid-Atlantic Ridge at 37°N, is one of the best-characterised vent fields, with
+      a total heat flux of 200 MW – 1 GW. Hydrothermal plumes influence deep ocean mixing,
+      tracer transport, and biogeochemistry — yet their dynamics in a rotating, stratified
+      environment were poorly constrained by 3D simulations.
+    </p>
+    <p>
+      This study asked: what coherent structures does the ocean generate in response to a
+      localised bottom heat flux? And can a regional ocean model — with its inherent
+      physical approximations — capture them faithfully?
+    </p>
+  </div>
+
+  <!-- Model setup -->
+  <div class="content-section">
+    <h2>Model configurations</h2>
+    <p>
+      The study used two parallel branches: an idealised CROCO configuration designed to
+      isolate processes incrementally, and a nested realistic ROMS UCLA simulation of the
+      actual Lucky Strike bathymetry.
+    </p>
+
+    <table class="cfg-table">
+      <thead>
+        <tr>
+          <th>Configuration</th>
+          <th>Relaxes</th>
+          <th>Relative cost</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Hydrostatic</strong></td>
+          <td>—</td>
+          <td><span class="tag-g">baseline</span></td>
+          <td>Far-field vortex dynamics</td>
+        </tr>
+        <tr>
+          <td><strong>NHMG</strong></td>
+          <td>Hydrostatic approximation</td>
+          <td><span class="tag-a">× 3–5</span></td>
+          <td>Near-source plume ascent</td>
+        </tr>
+        <tr>
+          <td><strong>NBQ</strong></td>
+          <td>Hydrostatic + Boussinesq</td>
+          <td><span class="tag-r">× 5–10</span></td>
+          <td>Near-vent density contrasts</td>
+        </tr>
+        <tr>
+          <td><strong>ROMS UCLA (realistic)</strong></td>
+          <td>Hydrostatic</td>
+          <td>—</td>
+          <td>Complex bathymetry, tidal forcing</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Domain parameters: 19.2 × 19.2 km (quiescent) and 38.4 × 19.2 km (crossflow runs),
+      50 m horizontal resolution, 1.2–12.5 m vertical resolution (64–128 σ-levels),
+      total heat flux 1000 MW, f-plane rotation f = 10<sup>−4</sup> s<sup>−1</sup>,
+      N ~ 10<sup>−3</sup> s<sup>−1</sup>. All runs on TGCC Irène using Slurm job scheduling.
+    </p>
+
+    <p>
+      The NHMG module (Roullet et al., 2017) solves the non-hydrostatic pressure
+      correction q via a multigrid Poisson solver in σ-coordinates, requiring grid
+      dimensions of 2<sup>p</sup> or 3 × 2<sup>p</sup>. The NBQ configuration
+      (Auclair et al., 2018) uses a pseudo-acoustic compressible approach, avoiding
+      the global Poisson solve at the cost of small acoustic timesteps.
+    </p>
+  </div>
+
+  <!-- Figures: simulation snapshots -->
+  <div class="content-section">
+    <h2>Simulation snapshots</h2>
+
+    <!-- Flat bottom vs Gaussian seamount -->
+    <div class="fig-grid-2">
+      <div>
+        <!--
+          FIGURE: assets/img/plume/vorticity_flat.png
+          Relative vorticity snapshot — flat bottom case
+          (horizontal view at intrusion level, ζ/f colormap)
+        -->
+        <img src="assets/img/plume/vorticity_flat.png"
+             alt="Relative vorticity — flat bottom case"
+             style="width:100%;border-radius:6px;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="fig-placeholder" style="display:none;">
+          <div class="fp-label">assets/img/plume/vorticity_flat.png<br>Relative vorticity — flat bottom</div>
+        </div>
+        <div class="fig-caption">Flat bottom — quiescent anticyclone at neutral buoyancy level. ζ/f at intrusion depth.</div>
+      </div>
+      <div>
+        <!--
+          FIGURE: assets/img/plume/vorticity_seamount.png
+          Relative vorticity — Gaussian seamount case showing cyclonic precession
+        -->
+        <img src="assets/img/plume/vorticity_seamount.png"
+             alt="Relative vorticity — Gaussian seamount case"
+             style="width:100%;border-radius:6px;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="fig-placeholder" style="display:none;">
+          <div class="fp-label">assets/img/plume/vorticity_seamount.png<br>Relative vorticity — Gaussian seamount</div>
+        </div>
+        <div class="fig-caption">Gaussian seamount — anticyclone undergoing cyclonic precession around the topography.</div>
+      </div>
+    </div>
+
+    <!-- Cold anomaly 5-panel -->
+    <div class="fig-wrap">
+      <!--
+        FIGURE: assets/img/plume/cold_anomaly_5panel.png
+        The full 5-panel figure: relative vorticity, passive tracer,
+        density anomaly, temperature anomaly, salinity anomaly.
+        Top row: vertical section. Bottom row: horizontal at intrusion level.
+        From your interview presentation slide 4.
+      -->
+      <img src="assets/img/plume/cold_anomaly_5panel.png"
+           alt="Cold-core anticyclone: vorticity, tracer, density, temperature, salinity anomalies"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="fig-placeholder" style="display:none; min-height:320px;">
+        <div class="fp-label">assets/img/plume/cold_anomaly_5panel.png<br>5-panel cold anomaly figure (vorticity · tracer · density · T anomaly · S anomaly)</div>
+      </div>
+      <div class="fig-caption">
+        Five-panel diagnostic at the intrusion level. Despite originating from a heat source,
+        the plume fluid arrives at neutral buoyancy colder and fresher than ambient —
+        a consequence of the Atlantic double-diffusive stratification (steep compensating
+        temperature gradient). This is the first 3D rotating confirmation of the Speer &amp;
+        Rona (1989) cold-core anticyclone mechanism.
+      </div>
+    </div>
+
+    <!-- Crossflow -->
+    <div class="fig-grid-2">
+      <div>
+        <!--
+          FIGURE: assets/img/plume/crossflow_2cms.png
+          Crossflow U=2 cm/s — coherent anticyclone detaching downstream
+        -->
+        <img src="assets/img/plume/crossflow_2cms.png"
+             alt="Crossflow 2 cm/s — coherent detached anticyclone"
+             style="width:100%;border-radius:6px;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="fig-placeholder" style="display:none;">
+          <div class="fp-label">assets/img/plume/crossflow_2cms.png<br>Crossflow U = 2 cm/s</div>
+        </div>
+        <div class="fig-caption">Crossflow U = 2 cm/s — coherent anticyclonic lens detaches and propagates downstream.</div>
+      </div>
+      <div>
+        <!--
+          FIGURE: assets/img/plume/crossflow_5cms.png
+          Crossflow U=5 cm/s — incoherent patches, regime transition
+        -->
+        <img src="assets/img/plume/crossflow_5cms.png"
+             alt="Crossflow 5 cm/s — incoherent vorticity patches"
+             style="width:100%;border-radius:6px;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="fig-placeholder" style="display:none;">
+          <div class="fp-label">assets/img/plume/crossflow_5cms.png<br>Crossflow U = 5 cm/s</div>
+        </div>
+        <div class="fig-caption">Crossflow U = 5 cm/s — incoherent patches only. Regime transition controlled by Ro<sub>source</sub> = U / (f · R<sub>plume</sub>).</div>
+      </div>
+    </div>
+
+    <!-- Toy model salinity stratification -->
+    <div class="fig-wrap">
+      <!--
+        FIGURE: assets/img/plume/salinity_cases_6panel.png
+        The 6-panel toy model figure showing 3 salinity cases.
+        From interview slide 5 (the screenshot you uploaded).
+      -->
+      <img src="assets/img/plume/salinity_cases_6panel.png"
+           alt="Effect of salinity stratification on plume intrusion — three cases"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="fig-placeholder" style="display:none; min-height:300px;">
+        <div class="fp-label">assets/img/plume/salinity_cases_6panel.png<br>Three salinity cases: constant S · unstable S · stable S<br>(vertical sections + horizontal vorticity at intrusion level)</div>
+      </div>
+      <div class="fig-caption">
+        Effect of salinity stratification on plume intrusion level and vortex polarity.
+        With an Atlantic-like unstable profile (salinity decreasing with depth),
+        the steep compensating temperature gradient means the rising plume becomes
+        colder than ambient before reaching the intrusion level — generating a
+        <em>cold-core anticyclone</em>. With a stable salinity profile the plume
+        remains warm at intrusion level, generating a warm-core anticyclone.
+      </div>
+    </div>
+
+    <!-- Temperature anomaly profile plot -->
+    <div class="fig-wrap">
+      <!--
+        FIGURE: assets/img/plume/temp_anomaly_profiles.png
+        The temperature anomaly within 2km radius plot (3 salinity cases)
+        — the tplumes_tanom.png figure you uploaded earlier.
+      -->
+      <img src="assets/img/plume/temp_anomaly_profiles.png"
+           alt="Temperature anomaly profiles — three salinity cases"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="fig-placeholder" style="display:none; min-height:280px;">
+        <div class="fp-label">assets/img/plume/temp_anomaly_profiles.png<br>Temperature anomaly profiles within 2 km of heat source<br>(green: constant S · blue: unstable S · orange: stable S)</div>
+      </div>
+      <div class="fig-caption">
+        Temperature anomaly profiles within 2 km of the heat source across the three salinity cases.
+        The unstable S profile (blue) develops a clear cold anomaly above mid-height,
+        while the stable S profile (orange) and constant S (green) remain warm throughout the rise.
+      </div>
+    </div>
+
+    <!-- Realistic simulation -->
+    <div class="fig-wrap">
+      <!--
+        FIGURE: assets/img/plume/realistic_vorticity.png
+        The relative vorticity field from the realistic ROMS run
+        at z = -1520 m, day 16 (from interview slide 7 / CSI slide 14).
+      -->
+      <img src="assets/img/plume/realistic_vorticity.png"
+           alt="Relative vorticity — realistic Lucky Strike domain"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="fig-placeholder" style="display:none; min-height:300px;">
+        <div class="fp-label">assets/img/plume/realistic_vorticity.png<br>Relative vorticity — realistic domain z = −1520 m, day 16</div>
+      </div>
+      <div class="fig-caption">
+        Relative vorticity at z = −1520 m in the realistic ROMS simulation (day 16). Complex
+        bathymetry and biases in the parent model stratification prevent coherent vortex formation —
+        a stark contrast with the idealised runs and a diagnostic of one-way nesting limitations.
+      </div>
+    </div>
+
+    <!-- Tracer dispersion -->
+    <div class="fig-wrap">
+      <!--
+        FIGURE: assets/img/plume/tracer_dispersion.png
+        Vertically integrated tracer — 200m resolution realistic run
+        (from CSI slide 13)
+      -->
+      <img src="assets/img/plume/tracer_dispersion.png"
+           alt="Tracer dispersion — realistic simulation"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="fig-placeholder" style="display:none; min-height:260px;">
+        <div class="fp-label">assets/img/plume/tracer_dispersion.png<br>Vertically integrated tracer — realistic simulation (200 m resolution)</div>
+      </div>
+      <div class="fig-caption">
+        Vertically integrated passive tracer after 2 months in the realistic simulation (200 m resolution).
+        The heat flux destratifies the water column and drives tracer upward to the intrusion layer,
+        enhancing lateral dispersion at 100–150 m above the vent fields.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Key results -->
+  <div class="content-section">
+    <h2>Key results</h2>
+    <div class="results-list">
+      <div class="result-item">
+        <div class="result-num">RESULT 01</div>
+        <div class="result-title">Cold-core anticyclone — first 3D rotating confirmation</div>
+        <div class="result-desc">Atlantic double-diffusive stratification drives the plume to an intrusion level where it is colder and fresher than ambient water at the same depth. The steep compensating temperature gradient causes the plume to develop a cold anomaly before it reaches neutral buoyancy. This generates an anticyclone with a cold core — predicted analytically by Speer &amp; Rona (1989) but confirmed here for the first time in a 3D rotating simulation.</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">RESULT 02</div>
+        <div class="result-title">Ageostrophic vortex structure</div>
+        <div class="result-desc">Rossby number Ro ≫ 1 at the anticyclone core, transitioning to Ro ~ 1 at the edge. The vortex is strongly ageostrophic near the source and undergoes geostrophic adjustment as it evolves. Under crossflow, the detached downstream anticyclone reaches Ro ~ 1, indicating completed adjustment.</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">RESULT 03</div>
+        <div class="result-title">Cyclonic precession and topographic Rossby wave dynamics</div>
+        <div class="result-desc">With a Gaussian seamount, the anticyclone precesses cyclonically at a period inconsistent with the inertial frequency f — consistent with topographic Rossby wave dynamics controlled by seamount geometry.</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">RESULT 04</div>
+        <div class="result-title">Baroclinic instability and restart cycle</div>
+        <div class="result-desc">The anticyclone grows until it becomes baroclinically unstable, undergoes mode-2 (azimuthal wavenumber 2) splitting into heton-like structures, and the generation process restarts. Domain size relative to the deformation radius L<sub>d</sub> ~ 3–5 km is likely influential.</div>
+      </div>
+      <div class="result-item">
+        <div class="result-num">RESULT 05</div>
+        <div class="result-title">Crossflow regime transition</div>
+        <div class="result-desc">A source Rossby number Ro<sub>source</sub> = U / (f · R<sub>plume</sub>) governs the coherence of the detached anticyclone. At low crossflow (2 cm/s) a coherent lens forms and propagates downstream; at higher crossflow (5 cm/s) only incoherent vorticity patches detach. PV provides a unifying framework — the plume is a localised source of negative PV, and the flow organises around that injection with coherence scaling with residence time ~ U<sup>−1</sup>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- References -->
+  <div class="content-section">
+    <h2>Key references</h2>
+    <div class="refs">
+      <div class="ref">Roullet, G., Molemaker, M.J., Ducousso, N., Dubos, T. (2017). Compact symmetric Poisson equation discretization for non-hydrostatic sigma coordinates ocean model. <em>Ocean Modelling</em>, 118, 107–117. <a href="https://doi.org/10.1016/j.ocemod.2017.09.001" target="_blank">doi:10.1016/j.ocemod.2017.09.001</a></div>
+      <div class="ref">Auclair, F. et al. (2018). A non-hydrostatic non-Boussinesq algorithm for free-surface ocean modelling. <em>Ocean Modelling</em>. <a href="https://doi.org/10.1016/j.ocemod.2018.07.011" target="_blank">doi:10.1016/j.ocemod.2018.07.011</a></div>
+      <div class="ref">Shchepetkin, A.F., McWilliams, J.C. (2005). The regional oceanic modeling system (ROMS). <em>Ocean Modelling</em>, 9, 347–404. <a href="https://doi.org/10.1016/j.ocemod.2004.08.002" target="_blank">doi:10.1016/j.ocemod.2004.08.002</a></div>
+      <div class="ref">Speer, K.G., Rona, P.A. (1989). A model of an Atlantic and Pacific hydrothermal plume. <em>Journal of Geophysical Research</em>, 94(C5), 6213–6220.</div>
+    </div>
+  </div>
+
+</div>
 
 <footer>
-  
- 
-<!--Contact -->
-
-  <div class="contact-box", id="contact">      
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="text-center">Find me here:</h3>
-        <h1></h1>
-      </div>
-      <div class="col-sm-6 text-center">       
-        <p style="color:#F6F1D1">Office: Room D211 </p>
-        <p style="color:#F6F1D1">Laboratoire d'Océanographie Physique, LOPS </p>
-        <p style="color:#F6F1D1">Technopôle Brest-Iroise, 
-          Rue Dumont d'Urville, 29280 Plouzané</p>
-        <h1></h1><h1></h1>
-        <ul class="list-inline banner-social-buttons">
-          <li><a href="https://github.com/gycrystle" 
-                 class="btn btn-default btn-group">
-              <i class="fab fa-github">
-                 <span class="network-name">GitHub</span></i></a></li>
-          <li><a href="mailto:crystle@univ-brest.fr" 
-                 class="btn btn-default btn-group">
-              <i class="fas fa-envelope">
-                 <span class="network-name">crystle@univ-brest.fr</span></i></a></li>
-        </ul>          
-      </div> 
-    
-      <div class="col-sm-6 text-center">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2651.0975338117164!2d-4.564303005660354!3d48.35864946996738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4816be462c06d9bf%3A0xe86dc26e93009560!2sInstitut+Universitaire+Europ%C3%A9en+de+la+Mer!5e0!3m2!1sen!2sfr!4v1549113641812" 
-                width="300" height="225" frameborder="0" 
-                style="border:0" allowfullscreen></iframe></div>
-      </div>
-      <div class="row">
-      <div class="col-xs-12">
-        <h1></h1><h1></h1><h1></h1>
-        <div class="textwidget">
-          <div align="center">Made by Greace Crystle.</div></div></div></div>  
-    </div>
-  </div> <!--end of footer-->
-
-
-  <!--
-  <div class="col-sm-12 text-center">
-    <hr>
-    <h3 style="padding: 20px 5px 0px 5px; color:#F6F1D1">Thank you for your visit! </h3>
-    <p style="padding: 20px 5px 0px 5px; color:#F6F1D1">Feedback is always welcomed :) </p>
-    
-    <!--<h4 style="padding: 20px 5px 10px 5px; color:#F6F1D1"></h4>
-  </div>
-  -->
-
-  
-
+  Greace Crystle · <a href="index.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">Back to portfolio</a>
 </footer>
 
-<script  src="js/index.js"></script>
-
-<script>
-includeHTML();
-</script> 
+</body>
 </html>

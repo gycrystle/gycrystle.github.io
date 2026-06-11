@@ -1,226 +1,632 @@
 <!DOCTYPE html>
-<html lang="en" >
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Greace Crystle</title>
-  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greace Crystle — Ocean Modeller</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:   #0B1F36;
+  --navy2:  #132C4A;
+  --teal:   #00B4CC;
+  --teal2:  #009DB3;
+  --off-white: #F5F7F9;
+  --white:  #FFFFFF;
+  --mid:    #8A9DB2;
+  --dark:   #2C3E50;
+  --amber:  #E8A54B;
+  --rule:   #DDE4ED;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: var(--dark);
+  background: var(--off-white);
+  line-height: 1.6;
+}
 
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(11,31,54,0.97);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw;
+  height: 56px;
+}
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700; font-size: 1rem;
+  color: var(--white); letter-spacing: 0.3px;
+  text-decoration: none;
+}
+.nav-logo span { color: var(--teal); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  color: rgba(255,255,255,0.7); text-decoration: none;
+  font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--teal); }
 
-      <link rel="stylesheet" href="css/style.css">
+/* ── HERO ── */
+.hero {
+  background: var(--navy);
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 80px 5vw 60px;
+  position: relative;
+  overflow: hidden;
+}
+/* subtle ocean grid background */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,180,204,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,180,204,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-content { position: relative; z-index: 1; max-width: 640px; }
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem; color: var(--teal);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+.hero h1 em { color: var(--teal); font-style: normal; }
+.hero-desc {
+  font-size: 1.05rem; color: rgba(255,255,255,0.72);
+  line-height: 1.7; margin-bottom: 32px;
+  max-width: 520px;
+}
+.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+.hero-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 3px; padding: 3px 10px;
+  letter-spacing: 0.5px;
+}
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.875rem; font-weight: 500;
+  padding: 10px 24px; border-radius: 4px;
+  text-decoration: none; transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 7px;
+  letter-spacing: 0.3px;
+}
+.btn-primary {
+  background: var(--teal); color: var(--navy);
+}
+.btn-primary:hover { background: var(--teal2); transform: translateY(-1px); }
+.btn-ghost {
+  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.8);
+}
+.btn-ghost:hover {
+  border-color: var(--teal); color: var(--teal);
+  transform: translateY(-1px);
+}
 
+/* depth gauge — signature element */
+.depth-gauge {
+  position: absolute; right: 8vw; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column;
+  align-items: flex-end; gap: 0;
+  opacity: 0.55;
+}
+.gauge-track {
+  width: 1.5px; height: 280px;
+  background: rgba(0,180,204,0.2);
+  position: relative; margin-left: auto;
+}
+.gauge-fill {
+  width: 100%; background: var(--teal);
+  position: absolute; bottom: 0;
+  animation: fillGauge 2.4s cubic-bezier(0.4,0,0.2,1) forwards;
+  height: 0;
+}
+@keyframes fillGauge { to { height: 100%; } }
+.gauge-marker {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem; color: rgba(0,180,204,0.7);
+  letter-spacing: 0.5px;
+}
+.gauge-marker-line {
+  width: 12px; height: 1px; background: rgba(0,180,204,0.4);
+}
+.gauge-labels {
+  position: absolute; right: 10px; top: 0;
+  height: 100%; display: flex; flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ── SECTION COMMON ── */
+section { padding: 80px 5vw; }
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; color: var(--teal);
+  letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--navy); margin-bottom: 40px;
+  letter-spacing: -0.3px;
+}
+
+/* ── ABOUT ── */
+.about { background: var(--white); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.about-text p {
+  color: #3a4a5c; line-height: 1.75;
+  margin-bottom: 16px; font-size: 0.975rem;
+}
+.about-text p:last-child { margin-bottom: 0; }
+.skills-grid {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.skill-group-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem; color: var(--mid);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem; color: var(--navy);
+  background: var(--off-white);
+  border: 1px solid var(--rule);
+  border-radius: 3px; padding: 3px 9px;
+}
+.skill-tag.highlight {
+  background: rgba(0,180,204,0.08);
+  border-color: rgba(0,180,204,0.3);
+  color: #007A8A;
+}
+
+/* ── PROJECTS ── */
+.projects { background: var(--off-white); }
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+  gap: 28px;
+}
+.project-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(11,31,54,0.12);
+}
+.project-visual {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+  background: var(--navy);
+}
+.project-visual img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.project-card:hover .project-visual img { transform: scale(1.04); }
+.project-visual-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 10px;
+}
+.project-visual-placeholder span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem; color: rgba(255,255,255,0.3);
+  letter-spacing: 1px;
+}
+.project-tag-bar {
+  position: absolute; top: 12px; left: 12px;
+  display: flex; gap: 6px;
+}
+.project-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem; font-weight: 500;
+  padding: 3px 8px; border-radius: 3px;
+  letter-spacing: 0.5px; text-transform: uppercase;
+}
+.tag-research { background: rgba(0,180,204,0.85); color: var(--navy); }
+.tag-portfolio { background: rgba(232,165,75,0.9); color: #3a2200; }
+.tag-wip { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.2); }
+.project-body { padding: 24px 26px 28px; flex: 1; display: flex; flex-direction: column; }
+.project-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem; font-weight: 700;
+  color: var(--navy); margin-bottom: 6px;
+  letter-spacing: -0.2px;
+}
+.project-subtitle {
+  font-size: 0.8rem; color: var(--mid);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 12px;
+}
+.project-desc {
+  font-size: 0.9rem; color: #4a5c6e;
+  line-height: 1.65; margin-bottom: 18px; flex: 1;
+}
+.project-tools { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 18px; }
+.project-tool {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem; color: var(--mid);
+  background: var(--off-white); border: 1px solid var(--rule);
+  border-radius: 3px; padding: 2px 7px;
+}
+.project-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem; font-weight: 600;
+  color: var(--teal); display: inline-flex;
+  align-items: center; gap: 5px;
+  transition: gap 0.2s;
+}
+.project-card:hover .project-link { gap: 9px; }
+
+/* ── CONTACT ── */
+.contact {
+  background: var(--navy);
+  text-align: center;
+}
+.contact .section-title { color: var(--white); margin-bottom: 14px; }
+.contact-sub {
+  font-size: 0.95rem; color: rgba(255,255,255,0.6);
+  margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto;
+}
+.contact-links {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+}
+.contact-link {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.875rem; font-weight: 500;
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  padding: 10px 22px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+.contact-link:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  transform: translateY(-2px);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #060F1C;
+  padding: 20px 5vw;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; color: rgba(255,255,255,0.25);
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .depth-gauge { display: none; }
+  .hero { padding: 100px 5vw 60px; }
+}
+</style>
 </head>
-
 <body>
 
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
-      rel="stylesheet">
-<link rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono|Pacifico|Pompiere">
-<link rel="stylesheet" 
-      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" 
-      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" 
-      crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/836/simplex-noise.min.js'></script>
+<nav>
+  <a class="nav-logo" href="index.html">Greace<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-
-
-<!--Header--> 
-<div w3-include-html="navbar.html"></div> 
-
-<!--Content--> 
-<div class="stars">
-
-</div>
-
-
-<div class="container">
-<!--About me--> 
-  <div id="about-me">
-      <div class="row">
-        <div class="col-xs-8">
-        <h3><strong>Greace Crystle</strong> - PhD candidate in physical oceanography</h3>
-        <p><em>Currently in my first year of PhD in Laboratoire d'Océanographie Physique 
-          et Spatiale (LOPS) in Brest-France.
-          My research topic is on the mixing and dissipation in the deep ocean.</em></p>
-        <p><em> </em></p>
-        <p>I like to work with numerical models, I find them very helpful 
-          to understand fluid flows.</p>
-        <p>When I'm not in front of my pc I like to cook, do a DIY project or walk on the beach.</p>
-        <p>Find out more about me 
-        <a href="resume.html">here</a></p>
-        <h1></h1>
-        </div>
-        <div class="col-xs-4">
-        <img class="img-rounded img-responsive" 
-             src="https://s3.eu-west-3.amazonaws.com/gcrystle/pic/gyc.jpg">
-        </div>
-      </div>
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Ocean Modeller · Physical Oceanographer</div>
+    <h1>Greace<br><em>Crystle</em></h1>
+    <p class="hero-desc">
+      I build and interrogate numerical ocean models — from non-hydrostatic
+      deep-sea process studies to metocean site characterisation for offshore
+      renewables. Based in Southampton, UK.
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag">CROCO · ROMS</span>
+      <span class="hero-tag">HPC · Slurm</span>
+      <span class="hero-tag">Python · Fortran</span>
+      <span class="hero-tag">ERA5 · CMEMS</span>
+      <span class="hero-tag">Offshore Wind</span>
     </div>
-  
-<!--
-  <div class="stars">
-
-    <div class="col-xs-12" style="padding:100px 0px 100px 0px; margin:100px 0px 100px 0px">
-
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View Projects →</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
     </div>
   </div>
--->
-<!--Portfolio-->
-  <div class="menu-subtitle" id="work">
-    <div class="row">
-      <div class="col-xs-12">
-        <h3 class="text-center">Research</h3>     
+
+  <!-- depth gauge -->
+  <div class="depth-gauge">
+    <div style="position:relative; height:280px; width:60px;">
+      <div class="gauge-track">
+        <div class="gauge-fill"></div>
+      </div>
+      <div class="gauge-labels">
+        <div class="gauge-marker">
+          <span>0 m</span>
+          <div class="gauge-marker-line"></div>
+        </div>
+        <div class="gauge-marker">
+          <span>−500</span>
+          <div class="gauge-marker-line"></div>
+        </div>
+        <div class="gauge-marker">
+          <span>−1000</span>
+          <div class="gauge-marker-line"></div>
+        </div>
+        <div class="gauge-marker">
+          <span>−1500</span>
+          <div class="gauge-marker-line"></div>
+        </div>
+        <div class="gauge-marker" style="color:rgba(0,180,204,1); font-weight:600;">
+          <span>−1700</span>
+          <div class="gauge-marker-line" style="background:var(--teal);"></div>
+        </div>
       </div>
     </div>
+    <div style="font-family:'JetBrains Mono',monospace; font-size:0.58rem; color:rgba(0,180,204,0.5); letter-spacing:1px; text-align:right; margin-top:8px;">Lucky Strike vent<br>Mid-Atlantic Ridge</div>
   </div>
-    
-  <div class="work-thumb">
-    <div class="row">
-      <div class="col-sm-12" style="margin:1rem 0px 3rem 0px">
-        <h2>Why study mixing?</h2>
-        <p>Mixing has a non trivial impact in the dynamic of the ocean. It plays an important role in transforming mechanical energy into avalable potential energy. However, the representation of mixing in ocean models are parametrized and the tuning of the free parameters is rarely paid much attention to. In the bottom layer, mixing is the major dynamical ingredients and quantifying the mixing is crucial to understand the dynamics in the bottom layer. My approach is to use high resolution model in turbulent regimes where mixing is important. </p>
-        <p></p>
-        <p>For more details check out the research page!</p>
-      </div>
-      <div class="col-sm-12" style="margin:1rem 0px 3rem 0px">
-        <h2>Linear EOS</h2>
-        <a href="slider.html">slider</a></p>
-        <p>test </p>
-        <p></p>
-        <p>For more details check out the research page!</p>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about" id="about">
+  <div class="section-label">Background</div>
+  <div class="section-title">About Me</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a physical oceanographer and numerical modeller with a background spanning
+        academic research and coastal engineering. My doctoral work at LOPS (Université
+        de Bretagne Occidentale / Ifremer, Brest) focused on hydrothermal plume dynamics
+        at the Lucky Strike vent field, using CROCO in hydrostatic, non-hydrostatic
+        (NHMG), and non-Boussinesq (NBQ) configurations on national HPC infrastructure.
+      </p>
+      <p>
+        I work across the full modelling pipeline — from domain configuration and
+        source-code modification in Fortran to post-processing and visualisation in
+        Python. I'm comfortable reading and modifying model internals, compiling on HPC
+        clusters, and diagnosing numerical behaviour at the scheme level.
+      </p>
+      <p>
+        More recently I've been building metocean analysis skills relevant to offshore
+        renewable energy, including wind and wave climate characterisation, tidal harmonic
+        analysis, and extreme value analysis using open datasets and reproducible Python
+        workflows.
+      </p>
+      <p>
+        I hold two Masters degrees: Applied Mechanical Sciences / Hydrodynamics and Ocean
+        Engineering (École Centrale de Nantes) and Ocean, Atmosphere, Climate &amp; Spatial
+        Observation (Sorbonne Université).
+      </p>
+    </div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-group-label">Ocean Models</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">CROCO (NHMG · NBQ)</span>
+          <span class="skill-tag highlight">ROMS UCLA</span>
+          <span class="skill-tag">MITgcm</span>
+          <span class="skill-tag">NEMO</span>
+        </div>
       </div>
       <div>
-      </div>
-      <div class="col-sm-4 text-center">
-        <div class="img-rounded" style="background-color: hsla(210, 1%, 99%, 0.98)">
-          <a href="windeddy.html">
-            <img class="img-responsive" 
-                 src="https://s3.eu-west-3.amazonaws.com/eddy-wind/input/surf_eddy.png">
-            <div class="caption">
-              <p>Idealized cyclonic eddy</p>
-            </div>
-          </a>
+        <div class="skill-group-label">HPC & Workflow</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">TGCC Irène · Datarmor</span>
+          <span class="skill-tag highlight">Slurm</span>
+          <span class="skill-tag">Linux / Bash</span>
+          <span class="skill-tag">Git</span>
         </div>
       </div>
-    
-    
-      <div class="col-sm-8">
-        <h4>Impact of wind forcing on mesoscale eddies</h4>
-        <p></p>
-        <p><em> </em></p>
-        <p></p>
-        <p></p>
-        <p>  
-        <a href="windeddy.html">read more</a></p>
-      </div>
-    </div>
-  
-
-    <div class="row">  
-      <div class="col-sm-4 text-center">
-        <div class="img-rounded" style="background-color: hsla(204, 14%, 7%, 0.05)">
-          <a href="plume.html">
-            <img class="img-responsive" 
-                 src="https://s3.eu-west-3.amazonaws.com/abyssal-mixing/caldeira/caldeira01_stream-1000_720.svg">
-                 <div class="caption">
-                   <p><em> </em></p>
-                 </div>
-          </a>
+      <div>
+        <div class="skill-group-label">Programming</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">Python</span>
+          <span class="skill-tag">Fortran</span>
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">xarray · pandas · scipy</span>
         </div>
       </div>
-    
-      <div class="col-sm-8">
-        <h4>Buoyant plume on a seamount</h4>
-        <p></p>
-        <p><em> </em></p>
-        <p></p>
-        <p></p>
-        <p>
-        <a href="plume.html">read more</a></p>
-      </div>  
+      <div>
+        <div class="skill-group-label">Metocean & Data</div>
+        <div class="skill-tags">
+          <span class="skill-tag highlight">ERA5 · CMEMS</span>
+          <span class="skill-tag highlight">UTide · pyextremes</span>
+          <span class="skill-tag">FES2014 · TPXO</span>
+          <span class="skill-tag">GEBCO</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-group-label">Background</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Coastal Engineering</span>
+          <span class="skill-tag">SAP2000</span>
+          <span class="skill-tag">Technical Reporting</span>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-</div> <!-- end of content -->
+<!-- ── PROJECTS ── -->
+<section class="projects" id="projects">
+  <div class="section-label">Work</div>
+  <div class="section-title">Projects</div>
+  <div class="projects-grid">
 
-<canvas id="myCanvas" style="max-width: 100%;">Your browser does not support the HTML5 canvas tag.
-   <img id="underwater" src="https://s3.eu-west-3.amazonaws.com/gcrystle/futureunderwater_lica.png"> 
-  </canvas>    
+    <!-- Project 1: Hydrothermal plume -->
+    <a class="project-card" href="plume.html">
+      <div class="project-visual">
+        <!--
+          FIGURE: assets/img/plume/hero.png
+          Suggested: the 3D mushroom plume isosurface figure (from CSI slide 7)
+          or the cold anomaly 5-panel figure.
+          Size: at least 880x440px, saved as PNG or JPG.
+          If no image yet, the placeholder below will show.
+        -->
+        <img src="assets/img/plume/hero.png"
+             alt="3D isosurface of hydrothermal plume at Lucky Strike"
+             onerror="this.style.display='none'">
+        <div class="project-visual-placeholder"
+             style="background: linear-gradient(135deg, #0B1F36 0%, #132C4A 60%, #1a3a5c 100%);">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="34" r="14" stroke="rgba(0,180,204,0.4)" stroke-width="1.5"/>
+            <line x1="24" y1="34" x2="24" y2="8" stroke="rgba(0,180,204,0.6)" stroke-width="1.5"/>
+            <circle cx="24" cy="6" r="3" fill="rgba(224,92,42,0.7)"/>
+          </svg>
+          <span>plume · lucky strike · MAR</span>
+        </div>
+        <div class="project-tag-bar">
+          <span class="project-tag tag-research">Doctoral Research</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Hydrothermal Plume Dynamics at Lucky Strike</div>
+        <div class="project-subtitle">LOPS · UBO · 2018–2023 · Mid-Atlantic Ridge, 37°N</div>
+        <p class="project-desc">
+          High-resolution numerical study of a hydrothermal plume in a rotating,
+          stratified ocean. Ran CROCO in three dynamical configurations — hydrostatic,
+          non-hydrostatic multigrid (NHMG), and non-Boussinesq (NBQ) — on national
+          HPC infrastructure. Key results include the first 3D rotating confirmation
+          of the Speer &amp; Rona (1989) cold-core anticyclone mechanism and a
+          crossflow regime transition characterised by a source Rossby number scaling.
+        </p>
+        <div class="project-tools">
+          <span class="project-tool">CROCO-NH</span>
+          <span class="project-tool">CROCO-NBQ</span>
+          <span class="project-tool">ROMS UCLA</span>
+          <span class="project-tool">TGCC Irène</span>
+          <span class="project-tool">Python</span>
+          <span class="project-tool">Fortran</span>
+        </div>
+        <span class="project-link">View project →</span>
+      </div>
+    </a>
 
+    <!-- Project 2: Channel South -->
+    <a class="project-card" href="channel-south.html">
+      <div class="project-visual">
+        <!--
+          FIGURE: assets/img/channel-south/hero.png
+          Suggested: the bathymetry/site map showing the study area south of IoW,
+          or the wave rose / Hs-Tp scatter plot.
+          Size: at least 880x440px.
+        -->
+        <img src="assets/img/channel-south/hero.png"
+             alt="Channel South metocean study area — English Channel"
+             onerror="this.style.display='none'">
+        <div class="project-visual-placeholder"
+             style="background: linear-gradient(135deg, #0d2d4a 0%, #1a5a3a 100%);">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M6 30 Q14 20 24 24 Q34 28 42 18" stroke="rgba(0,180,204,0.6)" stroke-width="1.5" fill="none"/>
+            <path d="M6 36 Q14 26 24 30 Q34 34 42 24" stroke="rgba(0,180,204,0.3)" stroke-width="1" fill="none"/>
+            <circle cx="28" cy="20" r="4" stroke="rgba(232,165,75,0.7)" stroke-width="1.5" fill="none"/>
+          </svg>
+          <span>english channel · offshore wind · metocean</span>
+        </div>
+        <div class="project-tag-bar">
+          <span class="project-tag tag-portfolio">Portfolio</span>
+          <span class="project-tag tag-wip">In Progress</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Channel South: Metocean Site Characterisation</div>
+        <div class="project-subtitle">Independent Study · 2026 · South of Isle of Wight, English Channel</div>
+        <p class="project-desc">
+          Feasibility-stage metocean characterisation for an offshore wind development
+          site south of the Isle of Wight. Covers 24-year wind climate, wave climate
+          with model validation against WaveNet buoy data (r&nbsp;=&nbsp;0.91), tidal
+          harmonic analysis of the complex Solent double-high-water regime, and
+          extreme value analysis (50- and 100-year return periods). Fully reproducible
+          Python pipeline on GitHub.
+        </p>
+        <div class="project-tools">
+          <span class="project-tool">Python</span>
+          <span class="project-tool">ERA5</span>
+          <span class="project-tool">CMEMS</span>
+          <span class="project-tool">UTide</span>
+          <span class="project-tool">pyextremes</span>
+          <span class="project-tool">GEBCO</span>
+          <span class="project-tool">FES2014</span>
+        </div>
+        <span class="project-link">View project →</span>
+      </div>
+    </a>
 
-
-
-<footer class="footer">
-  
- 
-<!--Contact -->
-
-  <div class="contact-box", id="contact">      
-    <div class="container-fluid">
-      <!--<div class="col-xs-12">-->
-        <h3 class="text-center">Find me here:</h3>
-        <h1></h1>
-      <!--</div>-->
-      <div class="col-sm-6 text-center">       
-        <p style="color:#F6F1D1">Office: Room D211 </p>
-        <p style="color:#F6F1D1">Laboratoire d'Océanographie Physique, LOPS </p>
-        <p style="color:#F6F1D1">Technopôle Brest-Iroise, 
-          Rue Dumont d'Urville, 29280 Plouzané</p>
-        <h1></h1><h1></h1>
-        <ul class="list-inline banner-social-buttons">
-          <li><a href="https://github.com/gycrystle" 
-                 class="btn btn-default btn-group">
-              <i class="fab fa-github">
-                 <span class="network-name">GitHub</span></i></a></li>
-          <li><a href="mailto:crystle@univ-brest.fr" 
-                 class="btn btn-default btn-group">
-              <i class="fas fa-envelope">
-                 <span class="network-name">crystle@univ-brest.fr</span></i></a></li>
-        </ul>          
-      </div> 
-    
-      <div class="col-sm-6 text-center">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2651.0975338117164!2d-4.564303005660354!3d48.35864946996738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4816be462c06d9bf%3A0xe86dc26e93009560!2sInstitut+Universitaire+Europ%C3%A9en+de+la+Mer!5e0!3m2!1sen!2sfr!4v1549113641812" 
-                width="300" height="225" frameborder="0" 
-                style="border:0" allowfullscreen></iframe></div>
-      </div>  
-      <div class="row">
-        <div class="col-xs-12">
-          <h1></h1><h1></h1><h1></h1>
-          <div class="textwidget">
-            <div align="center">Made by Greace Crystle.</div></div></div></div>
-    </div>
-    
-  </div> <!--end of footer-->
-
-
-  <!--
-  <div class="col-sm-12 text-center">
-    <hr>
-    <h3 style="padding: 20px 5px 0px 5px; color:#F6F1D1">Thank you for your visit! </h3>
-    <p style="padding: 20px 5px 0px 5px; color:#F6F1D1">Feedback is always welcomed :) </p>
-    
-    <!--<h4 style="padding: 20px 5px 10px 5px; color:#F6F1D1"></h4>
   </div>
-  -->
+</section>
 
+<!-- ── CONTACT ── -->
+<section class="contact" id="contact">
+  <div class="section-label" style="color:rgba(0,180,204,0.7);">Get in Touch</div>
+  <div class="section-title">Contact</div>
+  <p class="contact-sub">
+    Open to opportunities in numerical ocean modelling, metocean analysis,
+    and offshore renewable energy. Based in Southampton, UK.
+  </p>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:greace.crystle@outlook.com">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/>
+      </svg>
+      greace.crystle@outlook.com
+    </a>
+    <a class="contact-link" href="https://github.com/gycrystle" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+      </svg>
+      github.com/gycrystle
+    </a>
+  </div>
+</section>
 
- 
+<footer>
+  Greace Crystle · Built with HTML &amp; CSS · Hosted on GitHub Pages
 </footer>
 
 </body>
-
-<script  src="js/index.js"></script>
-
-<script>
-includeHTML();
-</script> 
-
-<script  src="js/star.js"></script>
-
 </html>
