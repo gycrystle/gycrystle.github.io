@@ -238,39 +238,6 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
   <div class="content-section">
     <h2>Simulation snapshots</h2>
 
-    <!-- Flat bottom vs Gaussian seamount -->
-    <div class="fig-grid-2">
-      <div>
-        <!--
-          FIGURE: assets/img/plume/vorticity_flat.png
-          Relative vorticity snapshot — flat bottom case
-          (horizontal view at intrusion level, ζ/f colormap)
-        -->
-        <img src="assets/img/plume/vorticity_flat.png"
-             alt="Relative vorticity — flat bottom case"
-             style="width:100%;border-radius:6px;"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="fig-placeholder" style="display:none;">
-          <div class="fp-label">assets/img/plume/vorticity_flat.png<br>Relative vorticity — flat bottom</div>
-        </div>
-        <div class="fig-caption">Flat bottom — quiescent anticyclone at neutral buoyancy level. ζ/f at intrusion depth.</div>
-      </div>
-      <div>
-        <!--
-          FIGURE: assets/img/plume/vorticity_seamount.png
-          Relative vorticity — Gaussian seamount case showing cyclonic precession
-        -->
-        <img src="assets/img/plume/vorticity_seamount.png"
-             alt="Relative vorticity — Gaussian seamount case"
-             style="width:100%;border-radius:6px;"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="fig-placeholder" style="display:none;">
-          <div class="fp-label">assets/img/plume/vorticity_seamount.png<br>Relative vorticity — Gaussian seamount</div>
-        </div>
-        <div class="fig-caption">Gaussian seamount — anticyclone undergoing cyclonic precession around the topography.</div>
-      </div>
-    </div>
-
     <!-- Cold anomaly 5-panel -->
     <div class="fig-wrap">
       <!--
@@ -295,37 +262,54 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
       </div>
     </div>
 
-    <!-- Crossflow -->
-    <div class="fig-grid-2">
-      <div>
-        <!--
-          FIGURE: assets/img/plume/crossflow_2cms.png
-          Crossflow U=2 cm/s — coherent anticyclone detaching downstream
-        -->
-        <img src="assets/img/plume/crossflow_2cms.png"
-             alt="Crossflow 2 cm/s — coherent detached anticyclone"
-             style="width:100%;border-radius:6px;"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="fig-placeholder" style="display:none;">
-          <div class="fp-label">assets/img/plume/crossflow_2cms.png<br>Crossflow U = 2 cm/s</div>
-        </div>
-        <div class="fig-caption">Crossflow U = 2 cm/s — coherent anticyclonic lens detaches and propagates downstream.</div>
+    <!-- Gaussian seamount -->
+    <div class="fig-wrap">
+      <!--
+        FIGURE: assets/img/plume/vorticity_seamount.png
+        Relative vorticity — Gaussian seamount case showing cyclonic precession
+      -->
+      <img src="assets/img/plume/vorticity_seamount.png"
+           alt="Relative vorticity — Gaussian seamount case"
+           style="width:100%;border-radius:6px;"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="fig-placeholder" style="display:none;">
+        <div class="fp-label">assets/img/plume/vorticity_seamount.png<br>Relative vorticity — Gaussian seamount</div>
       </div>
-      <div>
-        <!--
-          FIGURE: assets/img/plume/crossflow_5cms.png
-          Crossflow U=5 cm/s — incoherent patches, regime transition
-        -->
-        <img src="assets/img/plume/crossflow_5cms.png"
-             alt="Crossflow 5 cm/s — incoherent vorticity patches"
-             style="width:100%;border-radius:6px;"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="fig-placeholder" style="display:none;">
-          <div class="fp-label">assets/img/plume/crossflow_5cms.png<br>Crossflow U = 5 cm/s</div>
-        </div>
-        <div class="fig-caption">Crossflow U = 5 cm/s — incoherent patches only. Regime transition controlled by Ro<sub>source</sub> = U / (f · R<sub>plume</sub>).</div>
-      </div>
+      <div class="fig-caption">Gaussian seamount — anticyclone undergoing cyclonic precession around the topography.</div>
     </div>
+
+    <!-- Crossflow -->
+    <div class="fig-wrap">
+      
+      <!--
+        FIGURE: assets/img/plume/crossflow_2cms.png
+        Crossflow U=2 cm/s — coherent anticyclone detaching downstream
+      -->
+      <img src="assets/img/plume/crossflow_2cms.png"
+           alt="Crossflow 2 cm/s — coherent detached anticyclone"
+           style="width:100%;border-radius:6px;"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="fig-placeholder" style="display:none;">
+        <div class="fp-label">assets/img/plume/crossflow_2cms.png<br>Crossflow U = 2 cm/s</div>
+      </div>
+      <div class="fig-caption">Crossflow U = 2 cm/s — coherent anticyclonic lens detaches and propagates downstream.</div>
+    </div>
+
+    <div class="fig-wrap">
+      <!--
+        FIGURE: assets/img/plume/crossflow_5cms.png
+        Crossflow U=5 cm/s — incoherent patches, regime transition
+      -->
+      <img src="assets/img/plume/crossflow_5cms.png"
+           alt="Crossflow 5 cm/s — incoherent vorticity patches"
+           style="width:100%;border-radius:6px;"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="fig-placeholder" style="display:none;">
+        <div class="fp-label">assets/img/plume/crossflow_5cms.png<br>Crossflow U = 5 cm/s</div>
+      </div>
+      <div class="fig-caption">Crossflow U = 5 cm/s — incoherent patches only. Regime transition controlled by Ro<sub>source</sub> = U / (f · R<sub>plume</sub>).</div>
+    </div>
+
 
     <!-- Toy model salinity stratification -->
     <div class="fig-wrap">
@@ -351,7 +335,7 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
     </div>
 
     <!-- Temperature anomaly profile plot -->
-    <div class="fig-wrap">
+    <div class="fig-grid-2">
       <!--
         FIGURE: assets/img/plume/temp_anomaly_profiles.png
         The temperature anomaly within 2km radius plot (3 salinity cases)
