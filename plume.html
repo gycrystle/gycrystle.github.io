@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hydrothermal Plume Dynamics — Greace Crystle</title>
+<title>Hydrothermal Plume Dynamics - Greace Crystle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -124,7 +124,7 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
     </div>
     <p class="proj-summary">
       High-resolution numerical study of a hydrothermal plume in a rotating, stratified
-      ocean — combining idealised CROCO simulations in three dynamical configurations with
+      ocean, combining idealised CROCO simulations in three dynamical configurations with
       a nested realistic ROMS simulation of the Lucky Strike vent field on the Mid-Atlantic Ridge.
     </p>
   </div>
@@ -151,7 +151,7 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
       </svg>
       <div class="fp-label">assets/img/plume/mushroom_3d.png<br>3D plume isosurface figure</div>
     </div>
-    <div class="fig-caption">3D isosurface of the hydrothermal plume at Lucky Strike, showing the characteristic mushroom structure — a rising buoyant stem spreading into a horizontal intrusion at neutral buoyancy depth (~1350 m).</div>
+    <div class="fig-caption">3D isosurface of the hydrothermal plume at Lucky Strike, showing the characteristic mushroom structure: a rising buoyant stem spreading into a horizontal intrusion at neutral buoyancy depth (~1350 m).</div>
   </div>
 
   <!-- Scientific context -->
@@ -162,13 +162,13 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
       releasing around 11 TW of geothermal heat into the deep ocean. Lucky Strike, located
       on the Mid-Atlantic Ridge at 37°N, is one of the best-characterised vent fields, with
       a total heat flux of 200 MW – 1 GW. Hydrothermal plumes influence deep ocean mixing,
-      tracer transport, and biogeochemistry — yet their dynamics in a rotating, stratified
+      tracer transport, and biogeochemistry, yet their dynamics in a rotating, stratified
       environment were poorly constrained by 3D simulations.
     </p>
     <p>
       This study asked: what coherent structures does the ocean generate in response to a
-      localised bottom heat flux? And can a regional ocean model — with its inherent
-      physical approximations — capture them faithfully?
+      localised bottom heat flux? And can a regional ocean model, with its inherent
+      physical approximations, capture them faithfully?
     </p>
   </div>
 
@@ -193,7 +193,7 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
       <tbody>
         <tr>
           <td><strong>Hydrostatic</strong></td>
-          <td>—</td>
+          <td>none</td>
           <td><span class="tag-g">baseline</span></td>
           <td>Far-field vortex dynamics</td>
         </tr>
@@ -212,7 +212,7 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
         <tr>
           <td><strong>ROMS UCLA (realistic)</strong></td>
           <td>Hydrostatic</td>
-          <td>—</td>
+          <td>none</td>
           <td>Complex bathymetry, tidal forcing</td>
         </tr>
       </tbody>
@@ -238,7 +238,7 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
   <div class="content-section">
     <h2>Simulation snapshots</h2>
 
-    <!-- Cold anomaly 5-panel -->
+    <!-- 1. Cold anomaly 5-panel -->
     <div class="fig-wrap">
       <!--
         FIGURE: assets/img/plume/cold_anomaly_5panel.png
@@ -255,106 +255,105 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
       </div>
       <div class="fig-caption">
         Five-panel diagnostic at the intrusion level. Despite originating from a heat source,
-        the plume fluid arrives at neutral buoyancy colder and fresher than ambient —
+        the plume fluid arrives at neutral buoyancy colder and fresher than ambient,
         a consequence of the Atlantic double-diffusive stratification (steep compensating
         temperature gradient). This is the first 3D rotating confirmation of the Speer &amp;
         Rona (1989) cold-core anticyclone mechanism.
       </div>
     </div>
 
-    <!-- Gaussian seamount -->
+    <!-- 2. Toy model salinity stratification + temperature anomaly profiles -->
+    <div class="fig-grid-2">
+      <div>
+        <!--
+          FIGURE: assets/img/plume/salinity_cases_6panel.png
+          The 6-panel toy model figure showing 3 salinity cases.
+          From interview slide 5 (the screenshot you uploaded).
+        -->
+        <img src="assets/img/plume/salinity_cases_6panel.png"
+             alt="Effect of salinity stratification on plume intrusion, three cases"
+             style="width:100%;border-radius:6px;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="fig-placeholder" style="display:none; min-height:280px;">
+          <div class="fp-label">assets/img/plume/salinity_cases_6panel.png<br>Three salinity cases: constant S · unstable S · stable S<br>(vertical sections + horizontal vorticity at intrusion level)</div>
+        </div>
+        <div class="fig-caption">
+          Effect of salinity stratification on plume intrusion level and vortex polarity.
+          With an Atlantic-like unstable profile (salinity decreasing with depth), the steep
+          compensating temperature gradient means the rising plume becomes colder than ambient
+          before reaching the intrusion level, generating a <em>cold-core anticyclone</em>.
+          With a stable salinity profile the plume remains warm at intrusion level, generating
+          a warm-core anticyclone.
+        </div>
+      </div>
+      <div>
+        <!--
+          FIGURE: assets/img/plume/temp_anomaly_profiles.png
+          The temperature anomaly within 2km radius plot (3 salinity cases),
+          the tplumes_tanom.png figure you uploaded earlier.
+        -->
+        <img src="assets/img/plume/temp_anomaly_profiles.png"
+             alt="Temperature anomaly profiles, three salinity cases"
+             style="width:100%;border-radius:6px;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="fig-placeholder" style="display:none; min-height:280px;">
+          <div class="fp-label">assets/img/plume/temp_anomaly_profiles.png<br>Temperature anomaly profiles within 2 km of heat source<br>(green: constant S · blue: unstable S · orange: stable S)</div>
+        </div>
+        <div class="fig-caption">
+          Temperature anomaly profiles within 2 km of the heat source across the three salinity
+          cases. The unstable S profile (blue) develops a clear cold anomaly above mid-height,
+          while the stable S profile (orange) and constant S (green) remain warm throughout
+          the rise.
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Vorticity seamount -->
     <div class="fig-wrap">
       <!--
         FIGURE: assets/img/plume/vorticity_seamount.png
-        Relative vorticity — Gaussian seamount case showing cyclonic precession
+        Relative vorticity, Gaussian seamount case showing cyclonic precession
       -->
       <img src="assets/img/plume/vorticity_seamount.png"
-           alt="Relative vorticity — Gaussian seamount case"
-           style="width:100%;border-radius:6px;"
+           alt="Relative vorticity, Gaussian seamount case"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="fig-placeholder" style="display:none;">
-        <div class="fp-label">assets/img/plume/vorticity_seamount.png<br>Relative vorticity — Gaussian seamount</div>
+      <div class="fig-placeholder" style="display:none; min-height:280px;">
+        <div class="fp-label">assets/img/plume/vorticity_seamount.png<br>Relative vorticity, Gaussian seamount (ζ/f at intrusion level)</div>
       </div>
-      <div class="fig-caption">Gaussian seamount — anticyclone undergoing cyclonic precession around the topography.</div>
+      <div class="fig-caption">Gaussian seamount: anticyclone undergoing cyclonic precession around the topography, at a period inconsistent with the inertial frequency f, consistent with topographic Rossby wave dynamics.</div>
     </div>
 
-    <!-- Crossflow -->
+    <!-- 4. Crossflow 2 cm/s -->
     <div class="fig-wrap">
-      
       <!--
         FIGURE: assets/img/plume/crossflow_2cms.png
-        Crossflow U=2 cm/s — coherent anticyclone detaching downstream
+        Crossflow U=2 cm/s, coherent anticyclone detaching downstream
       -->
       <img src="assets/img/plume/crossflow_2cms.png"
-           alt="Crossflow 2 cm/s — coherent detached anticyclone"
-           style="width:100%;border-radius:6px;"
+           alt="Crossflow 2 cm/s, coherent detached anticyclone"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="fig-placeholder" style="display:none;">
+      <div class="fig-placeholder" style="display:none; min-height:280px;">
         <div class="fp-label">assets/img/plume/crossflow_2cms.png<br>Crossflow U = 2 cm/s</div>
       </div>
-      <div class="fig-caption">Crossflow U = 2 cm/s — coherent anticyclonic lens detaches and propagates downstream.</div>
+      <div class="fig-caption">Crossflow U = 2 cm/s: a coherent anticyclonic lens detaches from the source and propagates downstream.</div>
     </div>
 
+    <!-- 5. Crossflow 5 cm/s -->
     <div class="fig-wrap">
       <!--
         FIGURE: assets/img/plume/crossflow_5cms.png
-        Crossflow U=5 cm/s — incoherent patches, regime transition
+        Crossflow U=5 cm/s, incoherent patches, regime transition
       -->
       <img src="assets/img/plume/crossflow_5cms.png"
-           alt="Crossflow 5 cm/s — incoherent vorticity patches"
-           style="width:100%;border-radius:6px;"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="fig-placeholder" style="display:none;">
-        <div class="fp-label">assets/img/plume/crossflow_5cms.png<br>Crossflow U = 5 cm/s</div>
-      </div>
-      <div class="fig-caption">Crossflow U = 5 cm/s — incoherent patches only. Regime transition controlled by Ro<sub>source</sub> = U / (f · R<sub>plume</sub>).</div>
-    </div>
-
-
-    <!-- Toy model salinity stratification -->
-    <div class="fig-wrap">
-      <!--
-        FIGURE: assets/img/plume/salinity_cases_6panel.png
-        The 6-panel toy model figure showing 3 salinity cases.
-        From interview slide 5 (the screenshot you uploaded).
-      -->
-      <img src="assets/img/plume/salinity_cases_6panel.png"
-           alt="Effect of salinity stratification on plume intrusion — three cases"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-      <div class="fig-placeholder" style="display:none; min-height:300px;">
-        <div class="fp-label">assets/img/plume/salinity_cases_6panel.png<br>Three salinity cases: constant S · unstable S · stable S<br>(vertical sections + horizontal vorticity at intrusion level)</div>
-      </div>
-      <div class="fig-caption">
-        Effect of salinity stratification on plume intrusion level and vortex polarity.
-        With an Atlantic-like unstable profile (salinity decreasing with depth),
-        the steep compensating temperature gradient means the rising plume becomes
-        colder than ambient before reaching the intrusion level — generating a
-        <em>cold-core anticyclone</em>. With a stable salinity profile the plume
-        remains warm at intrusion level, generating a warm-core anticyclone.
-      </div>
-    </div>
-
-    <!-- Temperature anomaly profile plot -->
-    <div class="fig-grid-2">
-      <!--
-        FIGURE: assets/img/plume/temp_anomaly_profiles.png
-        The temperature anomaly within 2km radius plot (3 salinity cases)
-        — the tplumes_tanom.png figure you uploaded earlier.
-      -->
-      <img src="assets/img/plume/temp_anomaly_profiles.png"
-           alt="Temperature anomaly profiles — three salinity cases"
+           alt="Crossflow 5 cm/s, incoherent vorticity patches"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
       <div class="fig-placeholder" style="display:none; min-height:280px;">
-        <div class="fp-label">assets/img/plume/temp_anomaly_profiles.png<br>Temperature anomaly profiles within 2 km of heat source<br>(green: constant S · blue: unstable S · orange: stable S)</div>
+        <div class="fp-label">assets/img/plume/crossflow_5cms.png<br>Crossflow U = 5 cm/s</div>
       </div>
-      <div class="fig-caption">
-        Temperature anomaly profiles within 2 km of the heat source across the three salinity cases.
-        The unstable S profile (blue) develops a clear cold anomaly above mid-height,
-        while the stable S profile (orange) and constant S (green) remain warm throughout the rise.
-      </div>
+      <div class="fig-caption">Crossflow U = 5 cm/s: only incoherent vorticity patches detach, no coherent lens forms. Regime transition controlled by Ro<sub>source</sub> = U / (f · R<sub>plume</sub>).</div>
     </div>
 
-    <!-- Realistic simulation -->
+    <!-- 6. Realistic simulation -->
     <div class="fig-wrap">
       <!--
         FIGURE: assets/img/plume/realistic_vorticity.png
@@ -362,35 +361,35 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
         at z = -1520 m, day 16 (from interview slide 7 / CSI slide 14).
       -->
       <img src="assets/img/plume/realistic_vorticity.png"
-           alt="Relative vorticity — realistic Lucky Strike domain"
+           alt="Relative vorticity, realistic Lucky Strike domain"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
       <div class="fig-placeholder" style="display:none; min-height:300px;">
-        <div class="fp-label">assets/img/plume/realistic_vorticity.png<br>Relative vorticity — realistic domain z = −1520 m, day 16</div>
+        <div class="fp-label">assets/img/plume/realistic_vorticity.png<br>Relative vorticity, realistic domain z = −1520 m, day 16</div>
       </div>
       <div class="fig-caption">
         Relative vorticity at z = −1520 m in the realistic ROMS simulation (day 16). Complex
-        bathymetry and biases in the parent model stratification prevent coherent vortex formation —
+        bathymetry and biases in the parent model stratification prevent coherent vortex formation,
         a stark contrast with the idealised runs and a diagnostic of one-way nesting limitations.
       </div>
     </div>
 
-    <!-- Tracer dispersion -->
+    <!-- 7. Tracer dispersion -->
     <div class="fig-wrap">
       <!--
         FIGURE: assets/img/plume/tracer_dispersion.png
-        Vertically integrated tracer — 200m resolution realistic run
+        Vertically integrated tracer, 200m resolution realistic run
         (from CSI slide 13)
       -->
       <img src="assets/img/plume/tracer_dispersion.png"
-           alt="Tracer dispersion — realistic simulation"
+           alt="Tracer dispersion, realistic simulation"
            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
       <div class="fig-placeholder" style="display:none; min-height:260px;">
-        <div class="fp-label">assets/img/plume/tracer_dispersion.png<br>Vertically integrated tracer — realistic simulation (200 m resolution)</div>
+        <div class="fp-label">assets/img/plume/tracer_dispersion.png<br>Vertically integrated tracer, realistic simulation (200 m resolution)</div>
       </div>
       <div class="fig-caption">
         Vertically integrated passive tracer after 2 months in the realistic simulation (200 m resolution).
         The heat flux destratifies the water column and drives tracer upward to the intrusion layer,
-        enhancing lateral dispersion at 100–150 m above the vent fields.
+        enhancing lateral dispersion at 100 to 150 m above the vent fields.
       </div>
     </div>
 
@@ -402,8 +401,8 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
     <div class="results-list">
       <div class="result-item">
         <div class="result-num">RESULT 01</div>
-        <div class="result-title">Cold-core anticyclone — first 3D rotating confirmation</div>
-        <div class="result-desc">Atlantic double-diffusive stratification drives the plume to an intrusion level where it is colder and fresher than ambient water at the same depth. The steep compensating temperature gradient causes the plume to develop a cold anomaly before it reaches neutral buoyancy. This generates an anticyclone with a cold core — predicted analytically by Speer &amp; Rona (1989) but confirmed here for the first time in a 3D rotating simulation.</div>
+        <div class="result-title">Cold-core anticyclone: first 3D rotating confirmation</div>
+        <div class="result-desc">Atlantic double-diffusive stratification drives the plume to an intrusion level where it is colder and fresher than ambient water at the same depth. The steep compensating temperature gradient causes the plume to develop a cold anomaly before it reaches neutral buoyancy. This generates an anticyclone with a cold core, first predicted analytically by Speer &amp; Rona (1989), and confirmed here for the first time in a 3D rotating simulation.</div>
       </div>
       <div class="result-item">
         <div class="result-num">RESULT 02</div>
@@ -413,7 +412,7 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
       <div class="result-item">
         <div class="result-num">RESULT 03</div>
         <div class="result-title">Cyclonic precession and topographic Rossby wave dynamics</div>
-        <div class="result-desc">With a Gaussian seamount, the anticyclone precesses cyclonically at a period inconsistent with the inertial frequency f — consistent with topographic Rossby wave dynamics controlled by seamount geometry.</div>
+        <div class="result-desc">With a Gaussian seamount, the anticyclone precesses cyclonically at a period inconsistent with the inertial frequency f, consistent with topographic Rossby wave dynamics controlled by seamount geometry.</div>
       </div>
       <div class="result-item">
         <div class="result-num">RESULT 04</div>
@@ -423,7 +422,7 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
       <div class="result-item">
         <div class="result-num">RESULT 05</div>
         <div class="result-title">Crossflow regime transition</div>
-        <div class="result-desc">A source Rossby number Ro<sub>source</sub> = U / (f · R<sub>plume</sub>) governs the coherence of the detached anticyclone. At low crossflow (2 cm/s) a coherent lens forms and propagates downstream; at higher crossflow (5 cm/s) only incoherent vorticity patches detach. PV provides a unifying framework — the plume is a localised source of negative PV, and the flow organises around that injection with coherence scaling with residence time ~ U<sup>−1</sup>.</div>
+        <div class="result-desc">A source Rossby number Ro<sub>source</sub> = U / (f · R<sub>plume</sub>) governs the coherence of the detached anticyclone. At low crossflow (2 cm/s) a coherent lens forms and propagates downstream; at higher crossflow (5 cm/s) only incoherent vorticity patches detach. PV provides a unifying framework: the plume is a localised source of negative PV, and the flow organises around that injection with coherence scaling with residence time ~ U<sup>−1</sup>.</div>
       </div>
     </div>
   </div>
