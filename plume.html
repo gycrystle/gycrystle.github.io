@@ -203,12 +203,12 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
           <td><span class="tag-a">× 3–5</span></td>
           <td>Near-source plume ascent</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td><strong>NBQ</strong></td>
           <td>Hydrostatic + Boussinesq</td>
           <td><span class="tag-r">× 5–10</span></td>
           <td>Near-vent density contrasts</td>
-        </tr>
+        </tr> -->
         <tr>
           <td><strong>ROMS UCLA (realistic)</strong></td>
           <td>Hydrostatic</td>
@@ -228,9 +228,9 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
     <p>
       The NHMG module (Roullet et al., 2017) solves the non-hydrostatic pressure
       correction q via a multigrid Poisson solver in σ-coordinates, requiring grid
-      dimensions of 2<sup>p</sup> or 3 × 2<sup>p</sup>. The NBQ configuration
-      (Auclair et al., 2018) uses a pseudo-acoustic compressible approach, avoiding
-      the global Poisson solve at the cost of small acoustic timesteps.
+      dimensions of 2<sup>p</sup> or 3 × 2<sup>p</sup>. 
+      <!-- The NBQ configuration (Auclair et al., 2018) uses a pseudo-acoustic compressible approach, avoiding
+      the global Poisson solve at the cost of small acoustic timesteps. -->
     </p>
   </div>
 
@@ -350,7 +350,7 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
       <div class="fig-placeholder" style="display:none; min-height:280px;">
         <div class="fp-label">assets/img/plume/crossflow_5cms.png<br>Crossflow U = 5 cm/s</div>
       </div>
-      <div class="fig-caption">Crossflow U = 5 cm/s: only incoherent vorticity patches detach, no coherent lens forms. Regime transition controlled by Ro<sub>source</sub> = U / (f · R<sub>plume</sub>).</div>
+      <div class="fig-caption">Crossflow U = 5 cm/s: only incoherent vorticity patches detach, no coherent lens forms. </div>
     </div>
 
     <!-- 6. Realistic simulation -->
@@ -394,38 +394,7 @@ footer{background:#060F1C;padding:20px 5vw;text-align:center;font-family:'JetBra
     </div>
 
   </div>
-
-  <!-- Key results -->
-  <div class="content-section">
-    <h2>Key results</h2>
-    <div class="results-list">
-      <div class="result-item">
-        <div class="result-num">RESULT 01</div>
-        <div class="result-title">Cold-core anticyclone: first 3D rotating confirmation</div>
-        <div class="result-desc">Atlantic double-diffusive stratification drives the plume to an intrusion level where it is colder and fresher than ambient water at the same depth. The steep compensating temperature gradient causes the plume to develop a cold anomaly before it reaches neutral buoyancy. This generates an anticyclone with a cold core, first predicted analytically by Speer &amp; Rona (1989), and confirmed here for the first time in a 3D rotating simulation.</div>
-      </div>
-      <div class="result-item">
-        <div class="result-num">RESULT 02</div>
-        <div class="result-title">Ageostrophic vortex structure</div>
-        <div class="result-desc">Rossby number Ro ≫ 1 at the anticyclone core, transitioning to Ro ~ 1 at the edge. The vortex is strongly ageostrophic near the source and undergoes geostrophic adjustment as it evolves. Under crossflow, the detached downstream anticyclone reaches Ro ~ 1, indicating completed adjustment.</div>
-      </div>
-      <div class="result-item">
-        <div class="result-num">RESULT 03</div>
-        <div class="result-title">Cyclonic precession and topographic Rossby wave dynamics</div>
-        <div class="result-desc">With a Gaussian seamount, the anticyclone precesses cyclonically at a period inconsistent with the inertial frequency f, consistent with topographic Rossby wave dynamics controlled by seamount geometry.</div>
-      </div>
-      <div class="result-item">
-        <div class="result-num">RESULT 04</div>
-        <div class="result-title">Baroclinic instability and restart cycle</div>
-        <div class="result-desc">The anticyclone grows until it becomes baroclinically unstable, undergoes mode-2 (azimuthal wavenumber 2) splitting into heton-like structures, and the generation process restarts. Domain size relative to the deformation radius L<sub>d</sub> ~ 3–5 km is likely influential.</div>
-      </div>
-      <div class="result-item">
-        <div class="result-num">RESULT 05</div>
-        <div class="result-title">Crossflow regime transition</div>
-        <div class="result-desc">A source Rossby number Ro<sub>source</sub> = U / (f · R<sub>plume</sub>) governs the coherence of the detached anticyclone. At low crossflow (2 cm/s) a coherent lens forms and propagates downstream; at higher crossflow (5 cm/s) only incoherent vorticity patches detach. PV provides a unifying framework: the plume is a localised source of negative PV, and the flow organises around that injection with coherence scaling with residence time ~ U<sup>−1</sup>.</div>
-      </div>
-    </div>
-  </div>
+  
 
   <!-- References -->
   <div class="content-section">
